@@ -52,7 +52,7 @@ wss.on('connection', function(ws) {
         writeHead : {}
     };
 
-    sessionHandler(request, response, function(err) {
+    appFunctions.sessionHandler(request, response, function(err) {
         sessionId = request.session.id;
         console.log('Connection received with sessionId ' + sessionId);
     });

@@ -9,7 +9,6 @@ const I_CAN_STOP = 1;
 const I_AM_STARTING = 2;
 
 window.onload = function() {
-	console = new Console();
 	console.log('Page loaded ...');
 	videoInput = document.getElementById('videoInput');
 	videoOutput = document.getElementById('videoOutput');

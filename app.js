@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var kurento = require('kurento-client');
@@ -10,7 +11,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-var kurentoClient;
+var sessions = {};
+var candidatesQueue = {};
+var kurentoClient = null;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +26,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+var sessionHandler = session({
+    secret : 'none',
+    rolling : true,
+    resave : true,
+    saveUninitialized : true
+});
+
+app.use(sessionHandler);
 
 app.use('/', index);
 app.use('/users', users);
@@ -54,7 +66,7 @@ function getKurentoClient(callback) {
         return callback(null, kurentoClient);
     }
 
-    var ws_uri = 'ws://52.201.194.8:8888/kurento';
+    var ws_uri = 'ws://172.31.93.18:8888/kurento';
 
     kurento(ws_uri, function(error, _kurentoClient) {
         if (error) {
@@ -64,6 +76,7 @@ function getKurentoClient(callback) {
         }
 
         kurentoClient = _kurentoClient;
+        
         callback(null, kurentoClient);
     });
 }
@@ -188,5 +201,6 @@ module.exports = {
 	createMediaElements: createMediaElements,
 	connectMediaElements: connectMediaElements,
 	stop: stop,
-	onIceCandidate: onIceCandidate
+	onIceCandidate: onIceCandidate,
+	sessionHandler: sessionHandler
 }
