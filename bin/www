@@ -15,12 +15,12 @@ var ws = require('ws');
  */
 
 var options = {
-  key:  fs.readFileSync('./keys/server.key'),
-  cert: fs.readFileSync('./keys/server.crt')
+  key:  fs.readFileSync(__dirname + '/keys/server.key'),
+  cert: fs.readFileSync(__dirname + '/keys/server.crt')
 };
 
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 /**
@@ -165,5 +165,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  console.log('Listening on ' + bind);
 }
