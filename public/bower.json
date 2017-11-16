@@ -1,0 +1,27 @@
+{
+  "name": "WebRTC Sample",
+  "description": "WebRTC Sample",
+  "authors": [
+    "Arun <arunkumar7484@gmail.com>"
+  ],
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "homepage": "https://www.upwork.com/freelancers/~019ad950647691afeb",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "adapter.js": "v0.2.9",
+    "bootstrap": "~3.3.0",
+    "ekko-lightbox": "~3.3.0",
+    "demo-console": "1.5.1",
+    "kurento-utils": "6.6.2"
+  }
+}
