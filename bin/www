@@ -3,8 +3,9 @@
 /**
  * Module dependencies.
  */
-var appFunctions = require('../app')
+var appFunctions = require('../app');
 var app = appFunctions.app;
+var fs    = require('fs');
 var debug = require('debug')('webrtcsample:server');
 var https = require('https');
 var ws = require('ws');
